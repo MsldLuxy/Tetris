@@ -1,6 +1,12 @@
 import { Point, IViewer } from "./types";
 export class Square {
 
+
+  private _point: Point = {
+    x: 0,
+    y: 0
+  }
+  private _color: string = ""
   // 显示者
 
   private _viewer?: IViewer;
@@ -11,6 +17,9 @@ export class Square {
 
   set viewer(val) {
     this._viewer = val;
+    if (val) {
+      val.show();
+    }
   }
 
   get point() {
@@ -29,10 +38,14 @@ export class Square {
     return this._color;
   }
 
-  constructor(
-    private _point: Point,
-    private _color: string,
-    
-  ) { };
+  set color(value: string) {
+    this._color = value;
+  }
+
+  // constructor(
+  //   private _point: Point,
+  //   private _color: string,
+
+  // ) { };
 
 }
