@@ -1,8 +1,11 @@
 import { Square } from "./core/Square";
 import { SquareGroup } from "./core/SquareGroup";
+import { createTeris } from "./core/Teris";
+import { TerisRules } from "./core/TerisRules";
+import { MoveDirection } from "./core/types";
 import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
-import $ from "jquery";
 
+import $ from "jquery";
 
 // ----------------小方块类测试------------------
 
@@ -41,38 +44,22 @@ import $ from "jquery";
 
 // ----------------方块组合类测试------------------
 
-const sqGroup = new SquareGroup(
-  [{
-    x: -1,
-    y: 0,
-  },
-  {
-    x: 0,
-    y: 0,
-  },
-  {
-    x: 0,
-    y: -1,
-  }, {
-    x: 0,
-    y: 1,
-  }],
-  {
-    x: 5,
-    y: 5
-  },
-  "red"
-);
-
-sqGroup.squares.forEach(sq => {
+const teris = createTeris({ x: 3, y: 4 })
+teris.squares.forEach(sq => {
   sq.viewer = new SquarePageViewer(sq, $("#root"))
 });
 
-$("#btnDown").on("click",function() {
-  sqGroup.centerPoint = {
-    x: sqGroup.centerPoint.x,
-    y: sqGroup.centerPoint.y + 1
-  }
+$("#btnDown").on("click", function () {
+  TerisRules.move(teris, MoveDirection.down);
+  // TerisRules.moveDirectly(teris, MoveDirection.down);
+});
+$("#btnLeft").on("click", function () {
+  TerisRules.move(teris, MoveDirection.left);
+  // TerisRules.moveDirectly(teris, MoveDirection.left);
+});
+$("#btnRight").on("click", function () {
+  TerisRules.move(teris, MoveDirection.right);
+  // TerisRules.moveDirectly(teris, MoveDirection.right);
 });
 // ----------------方块组合类测试------------------
 

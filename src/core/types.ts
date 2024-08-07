@@ -9,3 +9,10 @@ export interface IViewer {
 }
 
 export type Shape = Point[];
+
+
+export enum MoveDirection {
+  down,
+  left,
+  right
+}
