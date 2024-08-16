@@ -18,10 +18,14 @@ export class SquareGroup {
 
   set centerPoint(value: Point) {
     this._centerPoint = value;
-    this._shape.forEach((p, index) => {
-      this._squares[index].point = {
-        x: this.centerPoint.x + p.x,
-        y: this.centerPoint.y + p.y
+    this.setSquarePoints();
+  }
+
+  setSquarePoints() {
+    this._shape.forEach((p, i) => {
+      this.squares[i].point = {
+        x: p.x + this.centerPoint.x,
+        y: p.y + this.centerPoint.y,
       }
     })
   }
@@ -31,12 +35,41 @@ export class SquareGroup {
     this._shape.forEach((p: Point) => {
       const sq = new Square();
       sq.color = this._color;
-      sq.point = {
-        x: this.centerPoint.x + p.x,
-        y: this.centerPoint.y + p.y
-      }
       arr.push(sq);
     })
     this._squares = arr;
+    this.setSquarePoints();
   }
+
+  // 是否为向右旋转
+  protected isClock = true;
+
+  /**
+   * 得到旋转后的shape
+   * @returns 新的shape
+   */
+  afterRotateShape(): Shape {
+    if (this.isClock) {
+      return this.shape.map((p: Point) => {
+        return {
+          x: -p.y,
+          y: p.x
+        }
+      })
+    } else {
+      return this.shape.map((p: Point) => {
+        return {
+          x: p.y,
+          y: -p.x
+        }
+      })
+    }
+  }
+
+  rotate() {
+    const rotateShape = this.afterRotateShape();
+    this._shape = rotateShape;
+    this.setSquarePoints();
+  }
+
 }

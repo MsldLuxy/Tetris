@@ -14,15 +14,15 @@ export const isPoint = (obj: any): obj is Point => {
 }
 
 export class TerisRules {
-  // 判断某个形状的方块是否可以移动到目标位置
+  // 某个形状的方块根据中心点位置去判断是否可以移动到目标位置
   static canIMove(shape: Shape, targetPoint: Point): boolean {
-    const targetShape = shape.map((s) => {
+    const targetSquarePoints = shape.map((s) => {
       return {
         x: s.x + targetPoint.x,
         y: s.y + targetPoint.y
       }
     })
-    const result = targetShape.some((s) => {
+    const result = targetSquarePoints.some((s) => {
       return s.x < 0 || s.x >= panelConfig.width || s.y >= panelConfig.height
     })
     if (!result) {
@@ -65,5 +65,15 @@ export class TerisRules {
 
   static moveDirectly(teris: SquareGroup, direction: MoveDirection) {
     while (this.move(teris, direction)) {}
+  }
+
+  static rotate(teris: SquareGroup) {
+    const newShape = teris.afterRotateShape();
+    if (this.canIMove(newShape, teris.centerPoint)) {
+      teris.rotate();
+      return true;
+    } else {
+      return false;
+    }
   }
 }

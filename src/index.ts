@@ -61,5 +61,13 @@ $("#btnRight").on("click", function () {
   TerisRules.move(teris, MoveDirection.right);
   // TerisRules.moveDirectly(teris, MoveDirection.right);
 });
+
+$("#rotate").on("click", function () {
+  TerisRules.rotate(teris);
+});
+
 // ----------------方块组合类测试------------------
+
+
+
 
