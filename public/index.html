@@ -6,12 +6,21 @@
   <title>俄罗斯方块</title>
   <style>
     #root {
+      display: flex;
+      justify-content: center;
+    }
+    #panel {
       position: relative;
       width: 300px;
       height: 300px;
       background-color: #000;
-      margin: auto;
     }
+    #next {
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+
     #btnContainer {
       width: 240px;
       margin: 20px auto;
@@ -21,12 +30,22 @@
 
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div id="panel">
+    </div>
+    <div id="tip">
+      <div id="next">
+      </div>
+    </div>
+  </div>
   <div id="btnContainer">
     <button id="btnDown">向下移动</button>
     <button id="btnLeft">向左移动</button>
     <button id="btnRight">向右移动</button>
     <button id="rotate">旋转</button>
+    <button id="start">开始</button>
+    <button id="pause">暂停</button>
+
 
     <!-- <button id="btnRemove">移除</button>
     <button id="btnAdd">显示</button> -->
