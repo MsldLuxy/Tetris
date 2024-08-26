@@ -1,8 +1,10 @@
+import { Game } from "./core/Game";
 import { Square } from "./core/Square";
 import { SquareGroup } from "./core/SquareGroup";
 import { createTeris } from "./core/Teris";
 import { TerisRules } from "./core/TerisRules";
 import { MoveDirection } from "./core/types";
+import { GamePageViewer } from "./core/viewer/GamePageViewer";
 import { SquarePageViewer } from "./core/viewer/SquarePageViewer";
 
 import $ from "jquery";
@@ -44,30 +46,57 @@ import $ from "jquery";
 
 // ----------------方块组合类测试------------------
 
-const teris = createTeris({ x: 3, y: 4 })
-teris.squares.forEach(sq => {
-  sq.viewer = new SquarePageViewer(sq, $("#root"))
-});
+// const teris = createTeris({ x: 3, y: 4 })
+// teris.squares.forEach(sq => {
+//   sq.viewer = new SquarePageViewer(sq, $("#root"))
+// });
 
-$("#btnDown").on("click", function () {
-  TerisRules.move(teris, MoveDirection.down);
-  // TerisRules.moveDirectly(teris, MoveDirection.down);
-});
-$("#btnLeft").on("click", function () {
-  TerisRules.move(teris, MoveDirection.left);
-  // TerisRules.moveDirectly(teris, MoveDirection.left);
-});
-$("#btnRight").on("click", function () {
-  TerisRules.move(teris, MoveDirection.right);
-  // TerisRules.moveDirectly(teris, MoveDirection.right);
-});
+// $("#btnDown").on("click", function () {
+//   TerisRules.move(teris, MoveDirection.down);
+//   // TerisRules.moveDirectly(teris, MoveDirection.down);
+// });
+// $("#btnLeft").on("click", function () {
+//   TerisRules.move(teris, MoveDirection.left);
+//   // TerisRules.moveDirectly(teris, MoveDirection.left);
+// });
+// $("#btnRight").on("click", function () {
+//   TerisRules.move(teris, MoveDirection.right);
+//   // TerisRules.moveDirectly(teris, MoveDirection.right);
+// });
 
-$("#rotate").on("click", function () {
-  TerisRules.rotate(teris);
-});
+// $("#rotate").on("click", function () {
+//   TerisRules.rotate(teris);
+// });
 
 // ----------------方块组合类测试------------------
 
+
+// -----------------Game类测试----------------------
+
+const g = new Game(new GamePageViewer());
+
+// g.start();
+$("#start").on("click", function () {
+  g.start();
+});
+
+$("#pause").on("click", function () {
+  g.pause();
+});
+
+$("#btnDown").on("click", function () {
+  g.controlDown();
+});
+$("#btnLeft").on("click", function () {
+  g.controlLeft();
+});
+$("#btnRight").on("click", function () {
+  g.controlRight();
+});
+
+$("#rotate").on("click", function () {
+  g.controlRotate();
+});
 
 
 

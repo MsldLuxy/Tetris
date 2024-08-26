@@ -120,7 +120,7 @@ export const shapes = [
 ]
 
 export const colors = [
-  "red", "green", "yellow", "blue", "orange", "white"
+  "red", "green", "yellow", "blue", "orange"
 ]
 export function createTeris(centerPoint: Point) {
   let index = getRandom(0, shapes.length);
