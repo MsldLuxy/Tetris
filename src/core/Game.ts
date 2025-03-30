@@ -14,7 +14,7 @@ export class Game {
   // 下落间隔时间
   private _duration: number = 1000;
   // 定时器
-  private _timer: number | undefined;
+  private _timer: number | undefined |  NodeJS.Timeout;
   constructor(private _viewer: GameViewer) {
     this.resetTerisCenterPoint(GameConfig.nextSize.width, this._nextTeris);
     this._viewer.showNext(this._nextTeris);
